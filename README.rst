@@ -1,10 +1,3 @@
-Sample Module Repository
-========================
+This is a COVID-19 tracker created as a school project for the Software Development track at WGU.
 
-This simple project is an example repo for Python projects.
-
-`Learn more <http://www.kennethreitz.org/essays/repository-structure-and-python>`_.
-
----------------
-
-If you want to learn more about ``setup.py`` files, check out `this repository <https://github.com/kennethreitz/setup.py>`_.
+Repo created from temlate graciously provided by navdeep-G. Template repo is here: navdeep-G/samplemod
