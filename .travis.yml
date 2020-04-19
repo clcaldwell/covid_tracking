@@ -21,3 +21,9 @@ after_success:
 
   # Report coverage artifact to 'test-coverage' analyzer
   - ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
+
+deploy:
+provider: heroku
+api_key: 48f07951-cda8-4d9b-b522-49f1ae16a985
+app:
+  production: covid-tracking-wgu
