@@ -1,0 +1,13 @@
+# API root page and docs
+https://covidtracking.com/api
+
+# Static data
+https://covidtracking.com/api/v1/states/current.json
+https://covidtracking.com/api/v1/states/daily.json
+
+
+# Sample API Call
+api_response = requests.get('https://covidtracking.com/api/states?state=NY')
+print("COVID-19 Testing Results in", api_response.json()['state'])
+print("Positive:", api_response.json()['positive'])
+print("Negative:", api_response.json()['negative'])
