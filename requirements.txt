@@ -3,3 +3,4 @@ sphinx
 pytest
 requests
 flask
+gunicorn
