@@ -12,7 +12,10 @@ def getCurrentStatsByState():
         #print("Positive:", api_response.json()['positive'])
         #print("Negative:", api_response.json()['negative'])
 
-@app.route("/") 
+#currentStats = getCurrentStatsByState()
+@app.route("/")
 def home_view(): 
-        return "<h1>Test Deploy to Heroku</h1>"
-        return "<h3>New York:" + (getCurrentStatsByState()) + "<h3>"
+        #return "<h1>Test Deploy to Heroku</h1>"
+        #return "<h3> New York:{}<h3>".format(currentStats)
+        return  "<h1>Test Deploy to Heroku</h1>\n"\
+            "<h3> New York:{1}<h3>".format(getCurrentStatsByState())
