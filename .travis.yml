@@ -8,8 +8,6 @@ install:
 
 script:
   - pytest
-  - nosetests tests
-  - coverage run test_hello.py
 
 # Report results to DeepSource
 after_success:
