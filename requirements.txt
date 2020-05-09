@@ -1,2 +1,4 @@
 requests
 waitress
+flask
+flask-sqlalchemy

@@ -1,1 +1,1 @@
-web: waitress app:flask_host
+web: waitress-serve --port=$PORT backend.flash_host:app
