@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime
+from datetime import datetime, time
 from multiprocessing import Pool
 
 
@@ -62,5 +62,11 @@ states_data = data_session.get(states_source)
 items = usa_data.json() + states_data.json()
 
 if __name__ == '__main__':
+    timer = 0
+    while requests.Session().get('https://murmuring-bayou-12953.herokuapp.com/states').status_code is not 200\
+            and timer < 30:
+        timer += 1
+        time.sleep(1)
+
     pool = Pool(10)
     [pool.apply_async(update_site(i), args=(i,)) for i in items]
