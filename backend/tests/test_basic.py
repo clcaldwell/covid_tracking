@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-from .context import sample
 
 import unittest
 
@@ -14,5 +12,4 @@ class BasicTestSuite(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    
-'''
+
