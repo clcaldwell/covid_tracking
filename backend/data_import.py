@@ -44,7 +44,7 @@ def update_site(data_item):
     }
     print(data_json)
     push_session = requests.Session()
-    resp = push_session.post('http://127.0.0.1:5000/states', json=data_json)
+    resp = push_session.post('https://murmuring-bayou-12953.herokuapp.com/states', json=data_json)
     if resp.status_code == 500:
         pass  # duplicate entry warning
     if resp.status_code != 201 or 500:
