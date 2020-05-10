@@ -1,3 +1,8 @@
-nose
-sphinx
 requests
+waitress
+flask
+sqlalchemy
+flask-sqlalchemy
+marshmallow>0, <3
+marshmallow_jsonapi
+flask_rest_jsonapi
