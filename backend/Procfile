@@ -1,1 +1,1 @@
-web: waitress-serve --call app:flask_host
+web: gunicorn wsgi:app

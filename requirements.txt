@@ -1,6 +1,6 @@
 requests
-waitress
 flask
+gunicorn
 sqlalchemy
 flask-sqlalchemy
 marshmallow==2.18.0

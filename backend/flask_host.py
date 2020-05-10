@@ -4,7 +4,6 @@ from marshmallow_jsonapi.flask import Relationship, Schema
 from flask_rest_jsonapi import ResourceRelationship, Api, ResourceDetail, ResourceList
 from marshmallow_jsonapi import fields
 from sqlalchemy import UniqueConstraint
-from waitress import serve
 import uuid
 import os
 import re
@@ -13,15 +12,6 @@ import re
 database_file = 'covid.sqlite'
 # Create a new Flask application
 app = Flask(__name__)
-
-
-@app.after_request
-def add_hostname_header(response):
-    env_host = str(os.environ.get('HOSTNAME'))
-    hostname = re.findall('[a-z]{3}-\d$', env_host)
-    if hostname:
-        response.headers["SP-LOCATION"] = hostname
-    return response
 
 
 @app.route('/')
@@ -84,9 +74,7 @@ api.route(StateOne, 'state_one', '/states/<int:id>')
 
 # main loop to run app in debug mode
 if __name__ == "__main__":
-    serve(
-        app,
+    app.run(
         host="0.0.0.0",
-        port=80,
-        ipv6=False
+        port=5000
     )
