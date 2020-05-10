@@ -9,7 +9,6 @@ import uuid
 import os
 import re
 
-
 database_file = 'covid.sqlite'
 # Create a new Flask application
 app = Flask(__name__)
@@ -27,6 +26,12 @@ def add_hostname_header(response):
 @app.route('/')
 def get_uuid():
     return str(uuid.uuid4())
+
+
+@app.__call__()
+def call(self, environ, start_response):
+    start_response("200 OK", [("Content-type", "text/html"),
+                              ('Content-Length', str(len(self.html)))])
 
 
 # Set up SQLAlchemy

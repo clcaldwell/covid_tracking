@@ -1,1 +1,1 @@
-web: waitress-serve --port 8080 --call app:flask_host
+web: waitress-serve --port 8080 --call flask_host:app
