@@ -17,21 +17,23 @@ app = Flask(__name__)
 
 @app.after_request
 def add_hostname_header(response):
-        env_host = str(os.environ.get('HOSTNAME'))
-        hostname = re.findall('[a-z]{3}-\d$', env_host)
-        if hostname:
-            response.headers["SP-LOCATION"] = hostname
-        return response
+    env_host = str(os.environ.get('HOSTNAME'))
+    hostname = re.findall('[a-z]{3}-\d$', env_host)
+    if hostname:
+        response.headers["SP-LOCATION"] = hostname
+    return response
 
 
 @app.route('/')
 def get_uuid():
     return str(uuid.uuid4())
 
+
 # Set up SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + database_file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 
 class State(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -41,11 +43,13 @@ class State(db.Model):
     negativeTotal = db.Column(db.Integer)
     deathTotal = db.Column(db.Integer)
     __table_args__ = (
-        UniqueConstraint(state, date),
+        db.UniqueConstraint(state, date),
     )
+
 
 # Create the table
 db.create_all()
+
 
 class StateSchema(Schema):
     class Meta:
@@ -61,15 +65,18 @@ class StateSchema(Schema):
     negativeTotal = fields.Integer()
     deathTotal = fields.Integer()
 
+
 class StateMany(ResourceList):
     schema = StateSchema
     data_layer = {'session': db.session,
                   'model': State}
 
+
 class StateOne(ResourceDetail):
     schema = StateSchema
     data_layer = {'session': db.session,
                   'model': State}
+
 
 api = Api(app)
 api.route(StateMany, 'state_many', '/states')
@@ -80,6 +87,6 @@ if __name__ == "__main__":
     serve(
         app,
         host="0.0.0.0",
-        port=443,
+        port=80,
         ipv6=False
     )
