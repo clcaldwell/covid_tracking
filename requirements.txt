@@ -1,4 +1,7 @@
 requests
 waitress
 flask
+sqlalchemy
 flask-sqlalchemy
+marshmallow_jsonapi
+flask_rest_jsonapi
