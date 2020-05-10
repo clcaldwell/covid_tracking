@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT --call backend.flask_host:app
+web: waitress-serve --call backend.flask_host:app
