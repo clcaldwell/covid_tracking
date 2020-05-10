@@ -3,6 +3,6 @@ waitress
 flask
 sqlalchemy
 flask-sqlalchemy
-marshmallow>0, <3
+marshmallow==2.18.0
 marshmallow_jsonapi
 flask_rest_jsonapi
