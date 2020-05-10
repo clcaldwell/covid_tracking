@@ -58,6 +58,10 @@ docs/_build/
 
 # pyenv
 .python-version
+bin
+include
+pyvenv.cfg
+share
 
 # dotenv
 .env

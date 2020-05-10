@@ -28,12 +28,6 @@ def get_uuid():
     return str(uuid.uuid4())
 
 
-@app.__call__()
-def call(self, environ, start_response):
-    start_response("200 OK", [("Content-type", "text/html"),
-                              ('Content-Length', str(len(self.html)))])
-
-
 # Set up SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + database_file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -89,8 +83,7 @@ api.route(StateOne, 'state_one', '/states/<int:id>')
 
 # main loop to run app in debug mode
 if __name__ == "__main__":
-    serve(
-        app,
+    app.run(
         host="0.0.0.0",
-        port=8080
+        port=5000
     )
