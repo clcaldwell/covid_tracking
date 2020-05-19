@@ -62,18 +62,26 @@ usa_data = data_session.get(usa_source)
 states_data = data_session.get(states_source)
 items = usa_data.json() + states_data.json()
 
+requests.Session().get('http://127.0.0.1:8080/states').status_code
+
 timer = 0
 ready = False
 while ready is not True:
     try:
+        print("Try...")
         status_code = requests.Session().get('http://127.0.0.1:8080/states').status_code
+        print(status_code)
     except:
+        print("Except...")
         time.sleep(1)
         pass
     else:
+        print("Else...")
         if status_code == 200:
+            print("Set ready to True")
             ready = True
+            print(ready)
         time.sleep(1)
 
-pool = Pool(10)
-[pool.apply_async(update_site(i), args=(i,)) for i in items]
+for i in items:
+    update_site(i)
