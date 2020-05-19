@@ -1,5 +1,6 @@
 import requests
-from datetime import datetime, time
+from datetime import datetime
+import time
 from multiprocessing import Pool
 
 
@@ -44,7 +45,7 @@ def update_site(data_item):
     }
     print(data_json)
     push_session = requests.Session()
-    resp = push_session.post('http://127.0.0.1/states', json=data_json)
+    resp = push_session.post('http://127.0.0.1:8000/states', json=data_json)
     if resp.status_code == 500:
         pass  # duplicate entry warning
     if resp.status_code != 201 or 500:
@@ -61,12 +62,18 @@ usa_data = data_session.get(usa_source)
 states_data = data_session.get(states_source)
 items = usa_data.json() + states_data.json()
 
-if __name__ == '__main__':
-    timer = 0
-    while requests.Session().get('http://127.0.0.1/states').status_code is not 200\
-            and timer < 30:
-        timer += 1
+timer = 0
+ready = False
+while ready is not True:
+    try:
+        status_code = requests.Session().get('http://127.0.0.1:8000/states').status_code
+    except:
+        time.sleep(1)
+        pass
+    else:
+        if status_code == 200:
+            ready = True
         time.sleep(1)
 
-    pool = Pool(10)
-    [pool.apply_async(update_site(i), args=(i,)) for i in items]
+pool = Pool(10)
+[pool.apply_async(update_site(i), args=(i,)) for i in items]
