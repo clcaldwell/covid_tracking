@@ -62,8 +62,6 @@ usa_data = data_session.get(usa_source)
 states_data = data_session.get(states_source)
 items = usa_data.json() + states_data.json()
 
-requests.Session().get('http://127.0.0.1:8080/states').status_code
-
 timer = 0
 ready = False
 while ready is not True:

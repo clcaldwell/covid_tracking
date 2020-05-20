@@ -10,7 +10,10 @@ import os
 import re
 import subprocess
 
-#from backend import data_import
+
+# Execute data_import.py in background. Has to be run this way to avoid race condition
+process = subprocess.Popen(["python3", "backend/data_import.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
 
 database_file = 'covid.sqlite'
 # Create a new Flask application
@@ -74,9 +77,6 @@ class StateOne(ResourceDetail):
 api = Api(app)
 api.route(StateMany, 'state_many', '/states')
 api.route(StateOne, 'state_one', '/states/<int:id>')
-
-# Execute data_import.py in background. Has to be run this way to avoid race condition
-process = subprocess.Popen(["python3", "backend/data_import.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 # main loop to run app in debug mode
 if __name__ == "__main__":
