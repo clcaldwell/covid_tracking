@@ -11,19 +11,12 @@ import re
 import subprocess
 
 
-DATABASE_URL = os.environ['DATABASE_URL']
-
 # Create a new Flask application
 app = Flask(__name__)
 
 
-@app.route('/')
-def get_uuid():
-    return str(uuid.uuid4())
-
-
 # Set up SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -77,6 +70,10 @@ class StateOne(ResourceDetail):
     data_layer = {'session': db.session,
                   'model': State}
 
+
+@app.route('/')
+def get_uuid():
+    return str(uuid.uuid4())
 
 api = Api(app)
 api.route(StateMany, 'state_many', '/states')
