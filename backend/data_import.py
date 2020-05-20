@@ -62,7 +62,6 @@ usa_data = data_session.get(usa_source)
 states_data = data_session.get(states_source)
 items = usa_data.json() + states_data.json()
 
-timer = 0
 ready = False
 while ready is not True:
     try:
@@ -71,7 +70,7 @@ while ready is not True:
         print(status_code)
     except:
         print("Except...")
-        time.sleep(1)
+        time.sleep(5)
         pass
     else:
         print("Else...")
@@ -79,7 +78,7 @@ while ready is not True:
             print("Set ready to True")
             ready = True
             print(ready)
-        time.sleep(1)
+        time.sleep(5)
 
 for i in items:
     update_site(i)
