@@ -14,6 +14,7 @@ import subprocess
 # Execute data_import.py in background. Has to be run this way to avoid race condition
 #process = subprocess.Popen(["python3", "backend/data_import.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
+DATABASE_URL = os.environ['DATABASE_URL']
 
 #database_file = 'covid.sqlite'
 # Create a new Flask application
