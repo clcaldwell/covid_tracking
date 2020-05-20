@@ -12,10 +12,10 @@ import subprocess
 
 
 # Execute data_import.py in background. Has to be run this way to avoid race condition
-process = subprocess.Popen(["python3", "backend/data_import.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+#process = subprocess.Popen(["python3", "backend/data_import.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 
-database_file = 'covid.sqlite'
+#database_file = 'covid.sqlite'
 # Create a new Flask application
 app = Flask(__name__)
 
@@ -26,7 +26,7 @@ def get_uuid():
 
 
 # Set up SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + database_file
+app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -41,6 +41,13 @@ class State(db.Model):
     __table_args__ = (
         db.UniqueConstraint(state, date),
     )
+
+    def __init__(self, state, date, positiveTotal, negativeTotal, deathTotal):
+        self.state = state
+        self.date = date
+        self.positiveTotal = positiveTotal
+        self.negativeTotal = negativeTotal
+        self.deathTotal = deathTotal
 
 
 # Create the table
