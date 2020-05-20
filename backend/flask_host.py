@@ -11,14 +11,8 @@ import re
 import subprocess
 
 
-# Execute data_import.py in background. Has to be run this way to avoid race condition
-#process = subprocess.Popen(["python3", "backend/data_import.py"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
 DATABASE_URL = os.environ['DATABASE_URL']
-print(DATABASE_URL)
-print('DATABASE_URL')
 
-#database_file = 'covid.sqlite'
 # Create a new Flask application
 app = Flask(__name__)
 
@@ -29,7 +23,7 @@ def get_uuid():
 
 
 # Set up SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
