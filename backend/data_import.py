@@ -45,7 +45,7 @@ def update_site(data_item):
     }
     print(data_json)
     push_session = requests.Session()
-    resp = push_session.post('http://127.0.0.1:8080/states', json=data_json)
+    resp = push_session.post('http://127.0.0.1:$PORT/states', json=data_json)
     if resp.status_code == 500:
         pass  # duplicate entry warning
     if resp.status_code != 201 or 500:
@@ -67,7 +67,7 @@ ready = False
 while ready is not True:
     try:
         print("Try...")
-        status_code = requests.Session().get('http://127.0.0.1:8080/states').status_code
+        status_code = requests.Session().get('http://127.0.0.1:$PORT/states').status_code
         print(status_code)
     except:
         print("Except...")
