@@ -27,6 +27,7 @@ class State(db.Model):
     date = db.Column(db.Date)
     positiveTotal = db.Column(db.Integer)
     negativeTotal = db.Column(db.Integer)
+
     deathTotal = db.Column(db.Integer)
     __table_args__ = (
         db.UniqueConstraint(state, date),
@@ -76,6 +77,7 @@ def get_uuid():
     return str(uuid.uuid4())
 
 api = Api(app)
+
 api.route(StateMany, 'state_many', '/states')
 api.route(StateOne, 'state_one', '/states/<int:id>')
 
