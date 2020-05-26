@@ -2,8 +2,6 @@ function renderStats(currentState) {
 
   var today = moment().format("YYYY-MM-DD").toString()
   console.log("today: " + today); // DEBUG
-  var yesterday = moment().subtract(1, 'days').format("YYYY-MM-DD").toString()
-  console.log("yesterday: " + yesterday); // DEBUG
 
   stats = {
     positiveToday:null,
@@ -15,10 +13,9 @@ function renderStats(currentState) {
   console.log("initialized: " + stats); // DEBUG
 
   var todayRequest = new XMLHttpRequest();
-  todayRequest.open('GET', `http://127.0.0.1:9999/states?filter[date]=${today}&filter[state]=${currentState}`, false);
-
   var yesterdayRequest = new XMLHttpRequest();
-  yesterdayRequest.open('GET', `http://127.0.0.1:9999/states?filter[date]=${yesterday}&filter[state]=${currentState}`, false);
+  todayRequest.open('GET', `http://127.0.0.1:9999/states?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=1`, false);
+  yesterdayRequest.open('GET', `http://127.0.0.1:9999/states?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=2`, false);
 
   todayRequest.onload = function() {
 
@@ -31,6 +28,11 @@ function renderStats(currentState) {
     stats.deathToday = todayData.map(a => a.attributes.deathTotal);
     console.log("stats.positiveToday from todayRequest.onload(): " + stats.positiveToday); // DEBUG
     console.log("stats.deathToday from todayRequest.onload(): " + stats.deathToday); // DEBUG
+
+    if (todayData.date != today) {
+        staleData = True
+        today = todayData.date
+    };
 
   };
 
