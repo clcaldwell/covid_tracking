@@ -6,7 +6,6 @@ import os
 import psycopg2
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from backend.flask_host import State
 
 DATABASE_URL = os.environ['DATABASE_URL']
