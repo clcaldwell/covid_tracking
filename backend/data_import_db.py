@@ -4,14 +4,16 @@ import time
 from multiprocessing import Pool
 import os
 import psycopg2
-import sqlalchemy
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
 from backend.flask_host import State
 
 DATABASE_URL = os.environ['DATABASE_URL']
-db = create_engine(DATABASE_URL)
-session = db.Session()
-
+engine = create_engine(DATABASE_URL)
+buildSession = sessionmaker()
+buildSession.configure(bind=engine)
+session = buildSession.Session()
 
 def update_site(data_item):
     # make USA a state to match up USA/States datasets into one table
