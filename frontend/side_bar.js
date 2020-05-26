@@ -47,17 +47,18 @@ var statesWithAbbr = [
     ["Vermont","VT"],
     ["Virginia","VA"],
     ["Washington","WA"],
+    ["Washington DC","DC"],
     ["West Virginia","WV"],
     ["Wisconsin","WI"],
     ["Wyoming","WY"]
 ];
 
-const sidebar = document.getElementById('side_bar');
+const sidebar_buttons = document.getElementById('side_bar_btn_group');
 
-const sidebar_container = document.createElement('div');
-sidebar_container.setAttribute('class', 'container');
+//const sidebar_container = document.createElement('div');
+//sidebar_container.setAttribute('class', 'container');
 
-sidebar.appendChild(sidebar_container);
+//sidebar.appendChild(sidebar_container);
 
 statesWithAbbr.forEach(state => {
       
@@ -67,9 +68,16 @@ statesWithAbbr.forEach(state => {
     //const br = document.createElement('br');
 
     const btn = document.createElement('BUTTON');
-    btn.setAttribute('class', 'btn btn-warning');
+    btn.setAttribute('class', 'btn btn-sm btn-primary py-0');
+    btn.setAttribute('data-toggle', 'button')
+    btn.setAttribute('style', 'font-size: 0.8em')
     btn.textContent = state[0];
-    btn.onclick = function() { renderMainGraph(state[1]) };
+    btn.onclick = function() {
+        renderMainGraph(state[1]);
+        renderStats(state[1]);
+        renderHeader(state[1])
+    };
+    //btn.onclick = function() { renderStats(state[1]) };
     //btn.onclick = function() { alert(state[1]) };
     //btn.setAttribute('href', `#${state[1]}`);
 
@@ -79,7 +87,8 @@ statesWithAbbr.forEach(state => {
     //sidebar.appendChild(statelink);
     //statelink.appendChild(a);
     //statelink.appendChild(br);
-    sidebar_container.appendChild(btn);
+    // sidebar_container.appendChild(btn);
+    sidebar_buttons.appendChild(btn)
     //sidebar_container.appendChild(br);
 
 });
