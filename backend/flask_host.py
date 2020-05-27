@@ -4,11 +4,8 @@ from marshmallow_jsonapi.flask import Relationship, Schema
 from flask_rest_jsonapi import ResourceRelationship, Api, ResourceDetail, ResourceList
 from marshmallow_jsonapi import fields
 from sqlalchemy import UniqueConstraint
-import threading
 import uuid
 import os
-import re
-import subprocess
 
 
 # Create a new Flask application
@@ -75,6 +72,7 @@ class StateOne(ResourceDetail):
 @app.route('/')
 def get_uuid():
     return str(uuid.uuid4())
+
 
 api = Api(app)
 

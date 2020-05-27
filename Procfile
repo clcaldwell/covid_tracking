@@ -1,1 +1,1 @@
-worker: python backend/data_import_db.py
+worker: python backend/data_import.py

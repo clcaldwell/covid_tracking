@@ -1,7 +1,17 @@
 import requests
 from datetime import datetime
-import time
-from multiprocessing import Pool
+import os
+import psycopg2  # this is not called internally by sqlalchemy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from flask_host import State
+
+
+DATABASE_URL = os.environ['DATABASE_URL']
+buildSession = sessionmaker()
+engine = create_engine(DATABASE_URL)
+buildSession.configure(bind=engine)
+session = buildSession()
 
 
 def update_site(data_item):
@@ -31,27 +41,17 @@ def update_site(data_item):
     # date to ISO8601 format
     date = datetime.strptime(str(data_item['date']), "%Y%m%d").strftime("%Y-%m-%d")
 
-    data_json = {
-        "data": {
-            "type": "state",
-            "attributes": {
-                "state": state,
-                "date": date,
-                "positiveTotal": positive,
-                "negativeTotal": negative,
-                "deathTotal": death
-            }
-        }
-    }
-    print(data_json)
-    push_session = requests.Session()
-    resp = push_session.post('http://WEB/states', json=data_json)
-    if resp.status_code == 500:
-        pass  # duplicate entry warning
-    if resp.status_code != 201 or 500:
-        pass
-        # raise ApiError('POST /tasks/ {}'.format(resp.status_code))
-    # print('Created task. ID: {}'.format(resp.json()["id"]))
+    current = State(state, date, positive, negative, death)
+
+    # Allow for updates of old data in case mistakes are fixed upstream,
+    # use builtin update query to find new records for .add()
+    update = session.query(State).filter_by(state=current.state, date=current.date).update({
+        "positiveTotal": current.positiveTotal,
+        "negativeTotal": current.negativeTotal,
+        "deathTotal": current.deathTotal
+    })
+    if update == 0:
+        session.add(current)
 
 
 usa_source = "https://covidtracking.com/api/v1/us/daily.json"
@@ -62,23 +62,8 @@ usa_data = data_session.get(usa_source)
 states_data = data_session.get(states_source)
 items = usa_data.json() + states_data.json()
 
-ready = False
-while ready is not True:
-    try:
-        print("Try...")
-        status_code = requests.Session().get('http://127.0.0.1:$PORT/states').status_code
-        print(status_code)
-    except:
-        print("Except...")
-        time.sleep(5)
-        pass
-    else:
-        print("Else...")
-        if status_code == 200:
-            print("Set ready to True")
-            ready = True
-            print(ready)
-        time.sleep(5)
-
 for i in items:
     update_site(i)
+
+session.commit()
+session.close()
