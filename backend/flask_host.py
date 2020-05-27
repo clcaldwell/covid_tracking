@@ -1,9 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from marshmallow_jsonapi.flask import Relationship, Schema
-from flask_rest_jsonapi import ResourceRelationship, Api, ResourceDetail, ResourceList
+from marshmallow_jsonapi.flask import Schema
+from flask_rest_jsonapi import Api, ResourceDetail, ResourceList
 from marshmallow_jsonapi import fields
-from sqlalchemy import UniqueConstraint
 import uuid
 import os
 
@@ -71,6 +70,7 @@ class StateOne(ResourceDetail):
 
 @app.route('/')
 def get_uuid():
+    """Return random UUID"""
     return str(uuid.uuid4())
 
 

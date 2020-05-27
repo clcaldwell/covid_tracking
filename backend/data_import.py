@@ -1,7 +1,6 @@
 import requests
 from datetime import datetime
 import os
-import psycopg2  # this is not called internally by sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_host import State
@@ -45,7 +44,9 @@ def update_site(data_item):
 
     # Allow for updates of old data in case mistakes are fixed upstream,
     # use builtin update query to find new records for .add()
-    update = session.query(State).filter_by(state=current.state, date=current.date).update({
+    update = session.query(State).filter_by(
+        state=current.state, date=current.date
+    ).update({
         "positiveTotal": current.positiveTotal,
         "negativeTotal": current.negativeTotal,
         "deathTotal": current.deathTotal
