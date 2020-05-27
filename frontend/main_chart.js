@@ -16,11 +16,6 @@ function removeData(chart) {
 
 function renderMainGraph(currentState) {
 
-  const app = document.getElementById('main_graph');
-  const container = document.createElement('div');
-  container.setAttribute('class', 'container');
-  app.appendChild(container);
-
   var request = new XMLHttpRequest();
   request.open('GET', `http://127.0.0.1:9999/states?page[size]=0&filter[state]=${currentState}`, true);
 
@@ -38,31 +33,42 @@ function renderMainGraph(currentState) {
     if (ctx.data == undefined) {
       var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'line',
-
+        type: 'bar',
         // The data for our dataset
         data: {
           labels: dates,
             datasets: [{
               label: 'Deceased',
-                backgroundColor: 'rgb(247, 20, 35)',
-                  borderColor: 'rgb(247, 20, 35)',
-                  data: deaths
-              },{
+              backgroundColor: 'rgb(35, 35, 35)',
+              borderColor: 'rgb(35, 35, 35)',
+              data: deaths
+                },{
               label: 'Positive',
-                backgroundColor: 'rgb(255, 234, 0)',
-                  borderColor: 'rgb(255, 234, 0)',
-                  data: positive
+              backgroundColor: 'rgba(247, 20, 35, 0.9)',
+              borderColor: 'rgb(247, 20, 35)',
+              data: positive
             }]
         },
-          // Configuration options go here
-          options: {}
-        });
-      } else {
+        // Configuration options go here
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: false,
+                    ticks: {
+                        beginAtZero: true
+                    },
+                }]
+            }
+        }
+      });
+    } else {
         removeData(ctx)
         addData(ctx, 'Deceased', deaths)
         addData(ctx, 'Positive', positive)
-      }
+    }
 
 
   };
