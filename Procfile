@@ -1,2 +1,2 @@
 worker: python backend/data_import.py
-web: gunicorn backend.flask_host:app
+web: bin/start-nginx gunicorn backend.flask_host:app --bind=unix:///tmp/nginx.socket
