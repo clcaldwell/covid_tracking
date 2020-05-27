@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>USA COVID19 Tracking - {{ state_name }} </title>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Load JS packages -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.26.0/moment.js" integrity="sha256-GIi3faatmXJKbOQPmLgUPDHXKYmXBSszcO9Euf0BQPk=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="site.css">
+</head>
+    <body>
+          <div class="grid-container">
+            <div id="side_bar" class="Side_Bar">
+                <div id ="side_bar_btn_group" class="btn-group-vertical">
+                </div>
+            </div>
+            <div id="main_graph" class="Main_Graph">
+              <canvas id="myChart"></canvas>
+            </div>
+            <div id="footer" class="Footer"></div>
+            <div id="Projection" class="Projection"></div>
+            <div id="map" class="Map"></div>
+            <div id="header" class="Header"></div>
+            <div id="case_stats" class="case_Stats"></div>
+            <div id="death_stats" class="death_Stats"></div>
+          </div>
+          <script src="side_bar.js"></script>
+          <script src="main_chart.js"></script>
+          <script src="stats.js"></script>
+          <script src="header.js"></script>
+          <script src="states.js"></script>
+    </body>
+</html>

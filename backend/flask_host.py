@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow_jsonapi.flask import Relationship, Schema
 from flask_rest_jsonapi import ResourceRelationship, Api, ResourceDetail, ResourceList
@@ -6,6 +6,8 @@ from marshmallow_jsonapi import fields
 from sqlalchemy import UniqueConstraint
 import uuid
 import os
+import us
+DC_STATEHOOD = 1  # Let's DC be used as state from us module
 
 
 # Create a new Flask application
@@ -73,6 +75,26 @@ class StateOne(ResourceDetail):
 def get_uuid():
     """Return random UUID"""
     return str(uuid.uuid4())
+
+
+@app.route('/state/<state>')
+def state_page(state=None):
+    state = state
+
+    state_lookup = us.states.lookup('state')
+
+    if state_lookup is None and state.casefold() is "us" or "usa":
+        class Lookup:
+            pass
+        Lookup.name = 'United States'
+        Lookup.abbr = 'USA'
+        state_lookup = Lookup
+
+    if state_lookup is not None:
+        return render_template('index.html',
+                               state_name=state_lookup.name,
+                               state_abbr=state_lookup.abbr
+                               )
 
 
 api = Api(app)
