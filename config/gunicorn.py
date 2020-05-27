@@ -1,6 +1,6 @@
 # gunicorn configuration
 def when_ready(server):
-    # touch app-initialized when ready
+    """Gunicorn hook that runs when the server is ready"""
     open('/tmp/app-initialized', 'w').close()
 
 
