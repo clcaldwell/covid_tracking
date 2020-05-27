@@ -14,8 +14,8 @@ function renderStats(currentState) {
 
   var todayRequest = new XMLHttpRequest();
   var yesterdayRequest = new XMLHttpRequest();
-  todayRequest.open('GET', `http://127.0.0.1:9999/states?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=1`, false);
-  yesterdayRequest.open('GET', `http://127.0.0.1:9999/states?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=2`, false);
+  todayRequest.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=1`, false);
+  yesterdayRequest.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=2`, false);
 
   todayRequest.onload = function() {
 

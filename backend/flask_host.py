@@ -75,9 +75,9 @@ def get_uuid():
 
 
 api = Api(app)
+api.route(StateMany, 'state_many', '/api')
+api.route(StateOne, 'state_one', '/api/<int:id>')
 
-api.route(StateMany, 'state_many', '/states')
-api.route(StateOne, 'state_one', '/states/<int:id>')
 
 # main loop to run app in debug mode
 if __name__ == "__main__":

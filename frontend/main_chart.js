@@ -17,7 +17,7 @@ function removeData(chart) {
 function renderMainGraph(currentState) {
 
   var request = new XMLHttpRequest();
-  request.open('GET', `http://127.0.0.1:9999/states?page[size]=0&filter[state]=${currentState}`, true);
+  request.open('GET', `${window.location.origin}/api?page[size]=0&filter[state]=${currentState}&sort=date`, true);
 
   request.onload = function() {
     

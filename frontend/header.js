@@ -4,7 +4,7 @@ function renderHeader(currentState) {
 
   var latestResult = new XMLHttpRequest();
   // Filter by State, Sort by Date (newest first), and only grab the first record
-  latestResult.open('GET', `http://127.0.0.1:9999/states?filter[state]=${currentState}&sort=-date&page[size]=1`, false);
+  latestResult.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1`, false);
 
   latestResult.onload = function() {
 
