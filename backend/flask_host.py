@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow_jsonapi.flask import Relationship, Schema
 from flask_rest_jsonapi import ResourceRelationship, Api, ResourceDetail, ResourceList
