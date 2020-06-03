@@ -1,4 +1,6 @@
-function renderHeader(currentState, latestDate) {
+function renderHeader(currentState, latestData) {
+
+  latestDate = latestData.map(a => a.attributes.date);
 
   console.log("Rendering Header")
 

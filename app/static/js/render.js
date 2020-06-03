@@ -7,10 +7,10 @@ function renderAll(currentState) {
         latestResult.onload = function() {
 
         // Begin accessing JSON data here
-        var latestData = JSON.parse(this.response);
-        var latestData = latestData.data;
+        latestData = JSON.parse(this.response);
+        latestData = latestData.data;
 
-        latestDate = latestData.map(a => a.attributes.date);
+        //latestDate = latestData.map(a => a.attributes.date);
 
         };
 
@@ -18,6 +18,6 @@ function renderAll(currentState) {
 
         renderMainGraph(currentState);
         renderStats(currentState);
-        renderHeader(currentState, latestDate)
+        renderHeader(currentState, latestData)
 
 };
