@@ -75,5 +75,3 @@ function renderMainGraph(currentState) {
 
   request.send();
 }
-
-// renderMainGraph("USA");

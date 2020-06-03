@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow_jsonapi.flask import Relationship, Schema
 from flask_rest_jsonapi import ResourceRelationship, Api, ResourceDetail, ResourceList
@@ -7,6 +7,7 @@ from sqlalchemy import UniqueConstraint
 import uuid
 import os
 import us
+
 DC_STATEHOOD = 1  # Let's DC be used as state from 'us' module
 
 
@@ -71,10 +72,9 @@ class StateOne(ResourceDetail):
                   'model': State}
 
 
-@app.route('/')
-def get_uuid():
-    """Return random UUID"""
-    return str(uuid.uuid4())
+@app.route("/")
+def usa():
+    return redirect('/state/USA')
 
 
 @app.route('/state/<state>')

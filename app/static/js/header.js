@@ -36,5 +36,3 @@ function renderHeader(currentState) {
             '</div>';
 
 };
-
-renderHeader("USA");

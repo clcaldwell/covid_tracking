@@ -84,5 +84,3 @@ function renderStats(currentState) {
   htmlStats();
 
 };
-
-renderStats("USA");
