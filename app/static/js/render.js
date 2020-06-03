@@ -1,23 +1,33 @@
 function renderAll(currentState) {
-    // Header processing
-        var latestResult = new XMLHttpRequest();
-        // Filter by State, Sort by Date (newest first), and only grab the first record
-        latestResult.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1`, false);
 
-        latestResult.onload = function() {
+        var allRequest = new XMLHttpRequest();
+        var todayRequest = new XMLHttpRequest();
+        var yesterdayRequest = new XMLHttpRequest();
 
-        // Begin accessing JSON data here
-        latestData = JSON.parse(this.response);
-        latestData = latestData.data;
+        // API Calls
+        allRequest.open('GET', `${window.location.origin}/api?page[size]=0&filter[state]=${currentState}&sort=date`, true);
+        todayRequest.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=1`, true);
+        yesterdayRequest.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=2`, true);
 
-        //latestDate = latestData.map(a => a.attributes.date);
-
+        // Onload JSON parsing
+        todayRequest.onload = function() {
+            todayData = JSON.parse(this.response).data;
+        };
+        yesterdayRequest.onload = function(){
+            yesterdayData = JSON.parse(this.response).data;
+        };
+        allRequest.onload = function() {
+            allData = JSON.parse(this.response).data;
         };
 
-        latestResult.send()
+        // Send all requests
+        todayRequest.send();
+        yesterdayRequest.send();
+        allRequest.send();
 
-        renderMainGraph(currentState);
-        renderStats(currentState);
-        renderHeader(currentState, latestData)
+        // Call render functions
+        renderStats(currentState, todayData, yesterdayData);
+        renderHeader(currentState, todayData);
+        renderMainGraph(currentState, allData);
 
 };
