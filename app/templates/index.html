@@ -32,8 +32,16 @@
                 </div>
             </div>
             <div id="main_graph" class="Main_Graph">
+              <h5 class="label">Time</h5>
+                <select name="chartType" id="chartType" onchange="updateMainChart()">
+                  <option value="30d">30 days</option>
+                  <option value="60d">60 days</option>
+                  <option value="90d">90 days</option>
+                  <option value="all">All time</option>
+                </select>
+                <!-- <button onclick="randomizeData()">Randomize Data!</button> -->
               <canvas id="myChart"></canvas>
-            </div>
+            </div>    
             <div id="footer" class="Footer"></div>
             <div id="Projection" class="Projection"></div>
             <div id="map" class="Map"></div>
