@@ -72,11 +72,12 @@ statesWithAbbr.forEach(state => {
     btn.setAttribute('data-toggle', 'button')
     btn.setAttribute('style', 'font-size: 0.8em')
     btn.textContent = state[0];
-    btn.onclick = function() {
-        renderMainGraph(state[1]);
-        renderStats(state[1]);
-        renderHeader(state[1])
-    };
+    btn.onclick = "location.href='state[1]';"
+    //btn.onclick = function() {
+    //    renderMainGraph(state[1]);
+    //    renderStats(state[1]);
+    //    renderHeader(state[1])
+    //};
     //btn.onclick = function() { renderStats(state[1]) };
     //btn.onclick = function() { alert(state[1]) };
     //btn.setAttribute('href', `#${state[1]}`);

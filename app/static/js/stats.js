@@ -30,7 +30,7 @@ function renderStats(currentState) {
     console.log("stats.deathToday from todayRequest.onload(): " + stats.deathToday); // DEBUG
 
     if (todayData.date != today) {
-        staleData = True
+        staleData = true
         today = todayData.date
     };
 
