@@ -3,14 +3,18 @@ function renderMainGraph(currentState, allData) {
   var dates = allData.map(a => a.attributes.date);
   var positive = allData.map(a => a.attributes.positiveTotal);
   var deaths = allData.map(a => a.attributes.deathTotal);
-    
+  
+  chartDiv = document.getElementById("main_graph_canvas")
+  while (chartDiv.firstChild) {
+      chartDiv.firstChild.remove();
+  }
+
+  var canvas = document.createElement("canvas");
+  canvas.id = "myChart"
+  chartDiv.append(canvas)
+
   var ctx = document.getElementById("myChart").getContext("2d");
-  
-  if (window.bar != undefined) { 
-    window.bar.destroy();
-  } 
-  
-  //if (ctx.data == undefined) {
+
     var chart = new Chart(ctx, {
       type: "bar",
       data: {
@@ -41,11 +45,6 @@ function renderMainGraph(currentState, allData) {
           }
       }
     });
-  //} else {
-     // removeData(ctx);
-      //addData(ctx, "Deceased", deaths);
-     // addData(ctx, "Positive", positive);
-  //}
 
 }
 
@@ -77,19 +76,3 @@ function updateMainChart(currentState, timeline) {
   };
 
 }
-
-function addData(chart, label, data) {
-  chart.data.labels.push(label);
-  chart.data.datasets.forEach((dataset) => {
-      dataset.data.push(data);
-  });
-  chart.update();
-};
-
-function removeData(chart) {
-  chart.data.labels.pop();
-  chart.data.datasets.forEach((dataset) => {
-      dataset.data.pop();
-  });
-  chart.update();
-};
