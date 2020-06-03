@@ -8,7 +8,12 @@ html, body, .grid-container {
   grid-template-columns: 0.2fr 1fr 1fr 1fr 0.1fr;
   grid-template-rows: 0.4fr 0.6fr 1.7fr 1.6fr 0.3fr;
   gap: 10px 20px;
-  grid-template-areas: "Side_Bar Header Header Header" "Side_Bar case_Stats death_Stats Stats" "Side_Bar Main_Graph Main_Graph Main_Graph" "Side_Bar Projection Map Map" "Footer Footer Footer Footer";
+  grid-template-areas:
+    "Side_Bar Header Header Header"
+    "Side_Bar case_Stats death_Stats Stats"
+    "Side_Bar Main_Graph Main_Graph Main_Graph"
+    "Side_Bar Projection Map Map"
+    "Footer Footer Footer Footer";
 }
 
 .Side_Bar { 

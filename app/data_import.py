@@ -3,7 +3,7 @@ from datetime import datetime
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from flask_host import State
+from flask_host import States
 
 
 DATABASE_URL = os.environ['DATABASE_URL']

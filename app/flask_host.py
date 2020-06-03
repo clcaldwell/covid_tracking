@@ -7,7 +7,7 @@ from sqlalchemy import UniqueConstraint
 import uuid
 import os
 import us
-DC_STATEHOOD = 1  # Let's DC be used as state from us module
+DC_STATEHOOD = 1  # Let's DC be used as state from 'us' module
 
 
 # Create a new Flask application
@@ -78,12 +78,11 @@ def get_uuid():
 
 
 @app.route('/state/<state>')
-def state_page(state=None):
-    state = state
+def state_page(state):
 
-    state_lookup = us.states.lookup('state')
+    state_lookup = us.states.lookup(state)
 
-    if state_lookup is None and state.casefold() is "us" or "usa":
+    if state_lookup is None and state.casefold() == "us" or state.casefold() == "usa":
         class Lookup:
             pass
         Lookup.name = 'United States'

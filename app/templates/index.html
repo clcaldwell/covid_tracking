@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>USA COVID19 Tracking - {{ state_name }} </title>
+    <title>USA COVID-19 Tracking - {{ state_name }} </title>
 
 
     <!-- Bootstrap CSS -->
@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.26.0/moment.js" integrity="sha256-GIi3faatmXJKbOQPmLgUPDHXKYmXBSszcO9Euf0BQPk=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
 </head>
     <body>
           <div class="grid-container">
@@ -33,10 +33,10 @@
             <div id="case_stats" class="case_Stats"></div>
             <div id="death_stats" class="death_Stats"></div>
           </div>
-          <script src="{{ url_for('static', filename='side_bar.js') }}"></script>
-          <script src="{{ url_for('static', filename='main_chart.js') }}"></script>
-          <script src="{{ url_for('static', filename='stats.js') }}"></script>
-          <script src="{{ url_for('static', filename='header.js') }}"></script>
-          <script src="{{ url_for('static', filename='states.js') }}"></script>
+          <script src="{{ url_for('static', filename='js/side_bar.js') }}"></script>
+          <script src="{{ url_for('static', filename='js/main_chart.js') }}"></script>
+          <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+          <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+          <script src="{{ url_for('static', filename='js/states.js') }}"></script>
     </body>
 </html>
