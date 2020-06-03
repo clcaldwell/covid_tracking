@@ -38,10 +38,9 @@
           <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
           <script src="{{ url_for('static', filename='js/header.js') }}"></script>
           <script src="{{ url_for('static', filename='js/states.js') }}"></script>
+          <script src="{{ url_for('static', filename='js/render.js') }}"></script>
           <script>
-            renderMainGraph("{{ state_abbr }}");
-            renderStats("{{ state_abbr }}");
-            renderHeader("{{ state_abbr }}")
+            renderAll("{{ state_abbr }}");
           </script>
     </body>
 </html>
