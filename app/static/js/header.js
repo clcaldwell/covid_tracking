@@ -1,8 +1,6 @@
 function renderHeader(currentState, latestData) {
 
-  latestDate = latestData.map(a => a.attributes.date);
-
-  console.log("Rendering Header")
+    console.log("Rendering Header")
 
     var caseStats = document.getElementById('header');
         /*
@@ -17,7 +15,7 @@ function renderHeader(currentState, latestData) {
         '<div>' +
             '<header style="border-bottom: 1px transparent #000;">' +
                 '<h1 style="display: inline-block;">COVID-19 Statistics</h1>' +
-                    '<span style="margin-left: 100px";"font-size: 10%"><i>Most current data: ' + latestDate + '</i></span>' +
+                    '<span style="margin-left: 100px";"font-size: 10%"><i>Most current data: ' + latestData.attributes.date + '</i></span>' +
             '</header>' +
         '</div>';
 

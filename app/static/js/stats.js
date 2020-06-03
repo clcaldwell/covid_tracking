@@ -14,8 +14,8 @@ function renderStats(currentState, todayData, yesterdayData) {
     console.log("initialized: " + stats); // DEBUG
     console.log("todayData from todayRequest.onload(): " + todayData); // DEBUG
 
-    stats.positiveToday = todayData.map(a => a.attributes.positiveTotal);
-    stats.deathToday = todayData.map(a => a.attributes.deathTotal);
+    stats.positiveToday = todayData.attributes.positiveTotal;
+    stats.deathToday = todayData.attributes.deathTotal;
     console.log("stats.positiveToday from todayRequest.onload(): " + stats.positiveToday); // DEBUG
     console.log("stats.deathToday from todayRequest.onload(): " + stats.deathToday); // DEBUG
 
@@ -26,8 +26,8 @@ function renderStats(currentState, todayData, yesterdayData) {
 
     console.log("yesterdayData from yesterdayRequest.onload(): " + yesterdayData); // DEBUG
 
-    stats.positiveYesterday = yesterdayData.map(a => a.attributes.positiveTotal);
-    stats.deathYesterday = yesterdayData.map(a => a.attributes.deathTotal);
+    stats.positiveYesterday = yesterdayData.attributes.positiveTotal;
+    stats.deathYesterday = yesterdayData.attributes.deathTotal;
     console.log("stats.positiveYesterday from yesterdayRequest.onload(): " + stats.positiveYesterday); // DEBUG
     console.log("stats.deathYesterday from yesterdayRequest.onload(): " + stats.deathYesterday); // DEBUG
 
