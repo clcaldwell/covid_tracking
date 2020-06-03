@@ -10,11 +10,6 @@ function renderStats(currentState, todayData, yesterdayData) {
         yesterdayDate:null
     };
 
-    if (todayData.date != today) {
-        staleData = true
-        today = todayData.date
-    };
-
     stats.positiveToday = todayData.attributes.positiveTotal;
     stats.deathToday = todayData.attributes.deathTotal;
     stats.positiveYesterday = yesterdayData.attributes.positiveTotal;
