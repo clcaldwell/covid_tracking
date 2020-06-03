@@ -5,7 +5,12 @@ function renderMainGraph(currentState, allData) {
   var deaths = allData.map(a => a.attributes.deathTotal);
     
   var ctx = document.getElementById("myChart").getContext("2d");
-  if (ctx.data == undefined) {
+  
+  if (window.bar != undefined) { 
+    window.bar.destroy();
+  } 
+  
+  //if (ctx.data == undefined) {
     var chart = new Chart(ctx, {
       type: "bar",
       data: {
@@ -36,11 +41,40 @@ function renderMainGraph(currentState, allData) {
           }
       }
     });
-  } else {
-      removeData(ctx);
-      addData(ctx, "Deceased", deaths);
-      addData(ctx, "Positive", positive);
-  }
+  //} else {
+     // removeData(ctx);
+      //addData(ctx, "Deceased", deaths);
+     // addData(ctx, "Positive", positive);
+  //}
+
+}
+
+function updateMainChart(currentState, timeline) {
+  
+  console.log("UpdateMainChart() invoked") // DEBUG
+  if (timeline !== undefined) {
+    
+    var request = new XMLHttpRequest();
+    url = `${window.location.origin}/api?` +
+      `filter[state]=${currentState}&` +
+      `page[size]=${timeline}&` +
+      `page[number]=1&` +
+      `sort=-date`;
+    request.open('GET', url, true);
+
+    request.onload = function() {
+        allData = JSON.parse(this.response).data;
+
+        function dateSort(a,b) {
+          return ( (new Date(a.attributes.date)) - (new Date(b.attributes.date)) );
+        }
+        allData = allData.sort(dateSort);
+
+        renderMainGraph(currentState, allData);
+    };
+
+    request.send()
+  };
 
 }
 
