@@ -55,18 +55,8 @@ var statesWithAbbr = [
 
 const sidebar_buttons = document.getElementById('side_bar_btn_group');
 
-//const sidebar_container = document.createElement('div');
-//sidebar_container.setAttribute('class', 'container');
-
-//sidebar.appendChild(sidebar_container);
-
 statesWithAbbr.forEach(state => {
       
-    //const statelink = document.createElement('div');
-    //statelink.setAttribute('href', '#${a}');
-
-    //const br = document.createElement('br');
-
     const btn = document.createElement('BUTTON');
     btn.setAttribute('class', 'btn btn-sm btn-primary py-0');
     btn.setAttribute('data-toggle', 'button');
@@ -75,23 +65,7 @@ statesWithAbbr.forEach(state => {
     btn.onclick = function() {
         location.href = state[1]
     };
-    //btn.onclick = function() {
-    //    renderMainGraph(state[1]);
-    //    renderStats(state[1]);
-    //    renderHeader(state[1])
-    //};
-    //btn.onclick = function() { renderStats(state[1]) };
-    //btn.onclick = function() { alert(state[1]) };
-    //btn.setAttribute('href', `#${state[1]}`);
 
-    //sidebar_container.appendChild(statelink)
-    //statelink.appendChild(a)
-
-    //sidebar.appendChild(statelink);
-    //statelink.appendChild(a);
-    //statelink.appendChild(br);
-    // sidebar_container.appendChild(btn);
     sidebar_buttons.appendChild(btn)
-    //sidebar_container.appendChild(br);
 
 });

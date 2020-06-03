@@ -1,25 +1,12 @@
 function renderAll(currentState) {
 
-        var allRequest = new XMLHttpRequest();
-        //var todayRequest = new XMLHttpRequest();
-        //var yesterdayRequest = new XMLHttpRequest();
-
-        // API Calls
-        allRequest.open('GET', `${window.location.origin}/api?page[size]=0&filter[state]=${currentState}&sort=date`, true);
-        //todayRequest.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=1`, true);
-        //yesterdayRequest.open('GET', `${window.location.origin}/api?filter[state]=${currentState}&sort=-date&page[size]=1&page[number]=2`, true);
-
-        // Onload JSON parsing
-        //todayRequest.onload = function() {
-            //todayData = JSON.parse(this.response).data;
-        //};
-        //yesterdayRequest.onload = function(){
-            //yesterdayData = JSON.parse(this.response).data;
-        //};
-        allRequest.onload = function() {
+        var request = new XMLHttpRequest();
+        request.open('GET', `${window.location.origin}/api?page[size]=0&filter[state]=${currentState}&sort=date`, true);
+        
+        request.onload = function() {
             allData = JSON.parse(this.response).data;
             
-            // Call render functions
+            // render functions
             renderStats(currentState, 
                 allData[allData.length-1],
                 allData[allData.length-2]);
@@ -28,11 +15,5 @@ function renderAll(currentState) {
             renderMainGraph(currentState, allData);
         };
 
-        // Send all requests
-        //todayRequest.send();
-        //yesterdayRequest.send();
-        allRequest.send();
-
-
-
+        request.send();
 };
