@@ -9,7 +9,7 @@ function renderMainGraph(currentState, allData) {
       chartDiv.firstChild.remove();
   }
 
-  var canvas = document.createElement("canvas");
+  var canvas = document.createElement("CANVAS");
   canvas.id = "myChart"
   chartDiv.append(canvas)
 
@@ -74,5 +74,37 @@ function updateMainChart(currentState, timeline) {
 
     request.send()
   };
+
+}
+
+function chartOptions(currentState) {
+
+  const maingraph_buttons = document.getElementById('main_graph_btn_group');
+  
+  var options = [
+    {"days":15, "text":"15 days" },
+    {"days":30, "text":"30 days"},
+    {"days":45, "text":"45 days"},
+    {"days":60, "text":"60 days"},
+    {"days":90, "text":"90 days"},
+    {"days":0, "text":"All"}
+  ]
+  options.forEach(a => {
+    const btn = document.createElement("BUTTON");
+      btn.setAttribute('class', "btn-group btn-group-toggle");
+      btn.setAttribute('data-toggle', 'button');
+      btn.textContent = a.text;
+      btn.onclick = function() {
+        updateMainChart(currentState, a.days)
+      };
+  
+      //const btn_input = document.createElement("INPUT");
+        //btn_input.setAttribute("type", "radio")
+       // btn_input.setAttribute("name", "options")
+        //btn_input.setAttribute("id", "option")
+        //btn_input.setAttribute("autocomplete", "off")
+
+      maingraph_buttons.appendChild(btn)//.appendChild(btn_input)
+  });
 
 }

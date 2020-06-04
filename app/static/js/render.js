@@ -1,6 +1,7 @@
 function renderAll(currentState) {
 
     renderSideBar();
+    chartOptions(currentState);
 
     var request = new XMLHttpRequest();
     url = `${window.location.origin}/api?` +
