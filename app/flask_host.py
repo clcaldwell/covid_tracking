@@ -9,7 +9,7 @@ import os
 import us
 
 DC_STATEHOOD = 1  # Let's DC be used as state from 'us' module
-DATABASE_URL = "https://data.heroku.com/datastores/ce356f11-84a8-427f-ba8c-8728568baee4#"
+DATABASE_URL = "https://data.heroku.com/datastores/1c6f166e-8077-4fce-bf4a-c5d45dedb2fa"
 
 # Create a new Flask application
 app = Flask(__name__)
