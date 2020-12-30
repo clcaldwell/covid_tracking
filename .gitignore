@@ -70,6 +70,8 @@ share
 .venv/
 venv/
 ENV/
+Pipfile
+Pipfile.lock
 
 # website
 node_modules

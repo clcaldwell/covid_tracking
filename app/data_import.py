@@ -6,11 +6,13 @@ from sqlalchemy.orm import sessionmaker
 from flask_host import State
 
 
-DATABASE_URL = os.environ['DATABASE_URL']
-buildSession = sessionmaker()
-engine = create_engine(DATABASE_URL)
-buildSession.configure(bind=engine)
-session = buildSession()
+def connect_db():
+    DATABASE_URL = os.environ['DATABASE_URL']
+    buildSession = sessionmaker()
+    engine = create_engine(DATABASE_URL)
+    buildSession.configure(bind=engine)
+    #session = buildSession()
+    return buildSession()
 
 
 def update_site(data_item):
@@ -54,16 +56,19 @@ def update_site(data_item):
     if update == 0:
         session.add(current)
 
+def get_data():
+    usa_source = "https://api.covidtracking.com/v1/us/daily.json"
+    states_source = "https://api.covidtracking.com/v1/states/daily.json"
 
-usa_source = "https://covidtracking.com/api/v1/us/daily.json"
-states_source = "https://covidtracking.com/api/v1/states/daily.json"
+    data_session = requests.Session()
+    usa_data = data_session.get(usa_source)
+    states_data = data_session.get(states_source)
+    items = usa_data.json() + states_data.json()
+    return items
 
-data_session = requests.Session()
-usa_data = data_session.get(usa_source)
-states_data = data_session.get(states_source)
-items = usa_data.json() + states_data.json()
+session = connect_db
 
-for i in items:
+for i in get_data():
     update_site(i)
 
 session.commit()

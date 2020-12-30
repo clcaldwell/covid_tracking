@@ -6,17 +6,16 @@
 
 This is a COVID-19 tracker created as a school project for the Software Development track at WGU.
 
-Repo created from temlate graciously provided by navdeep-G. Template repo is here: navdeep-G/samplemod
+Repo created from template graciously provided by navdeep-G. Template repo is here: navdeep-G/samplemod
 
 ## Data sourced from:
 
 # API root page and docs
-https://covidtracking.com/api
+https://covidtracking.com/data/api
 
 # Static data
-https://covidtracking.com/api/v1/states/current.json
-https://covidtracking.com/api/v1/states/daily.json
-
+https://api.covidtracking.com/v1/us/daily.json
+https://api.covidtracking.com/v1/states/daily.json
 
 # Sample API Call
 api_response = requests.get('https://covidtracking.com/api/states?state=NY')
