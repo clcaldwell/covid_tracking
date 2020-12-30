@@ -2,8 +2,8 @@ requests
 flask
 gunicorn
 sqlalchemy
-flask-sqlalchemy
-marshmallow==2.18.0
+flask-sqlalchemys
+marshmallow
 marshmallow_jsonapi
 flask_rest_jsonapi
 psycopg2-binary
